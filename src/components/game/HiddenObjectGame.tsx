@@ -6,6 +6,7 @@ import { GameBoard } from './GameBoard';
 import { GameHeader } from './GameHeader';
 import { ObjectList } from './ObjectList';
 import { GameComplete } from './GameComplete';
+import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
 
 export const HiddenObjectGame = () => {
@@ -208,10 +209,17 @@ export const HiddenObjectGame = () => {
 
       {/* Pause Overlay */}
       {gameState.gameStatus === 'paused' && (
-        <div className="fixed inset-0 bg-game-bg/80 backdrop-blur-sm flex items-center justify-center z-40">
+        <div className="fixed inset-0 bg-game-bg/80 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-card p-8 rounded-lg border border-border shadow-game text-center space-y-4">
             <h2 className="text-2xl font-bold text-foreground">Game Paused</h2>
             <p className="text-muted-foreground">Click Resume to continue playing</p>
+            <Button
+              onClick={handlePause}
+              className="mt-4"
+              variant="default"
+            >
+              Resume Game
+            </Button>
           </div>
         </div>
       )}

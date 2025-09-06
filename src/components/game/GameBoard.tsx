@@ -24,15 +24,16 @@ export const GameBoard = ({ level, onObjectFound, foundObjects, className }: Gam
     setClickedPosition({ x, y });
     setTimeout(() => setClickedPosition(null), 500);
 
-    // Check if click hits any unfound object
+    // Check if click hits any unfound object (with tolerance for easier clicking)
+    const tolerance = 2; // 2% tolerance on each side
     const hitObject = level.objects.find(obj => {
       if (foundObjects.includes(obj.id)) return false;
       
       return (
-        x >= obj.x &&
-        x <= obj.x + obj.width &&
-        y >= obj.y &&
-        y <= obj.y + obj.height
+        x >= obj.x - tolerance &&
+        x <= obj.x + obj.width + tolerance &&
+        y >= obj.y - tolerance &&
+        y <= obj.y + obj.height + tolerance
       );
     });
 
